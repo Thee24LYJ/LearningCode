@@ -36,6 +36,13 @@ class MyQueue:
         self.front = (self.front + 1) % len(self.queue)
         return dequeue_element
 
+    def is_empty(self):
+        """
+        判断队列是否为空
+        :return: 空返回True,否则返回False
+        """
+        return self.front == self.rear
+
     def print(self):
         """
         打印队列中的所有元素
