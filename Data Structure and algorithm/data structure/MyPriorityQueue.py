@@ -5,7 +5,7 @@
     @file： MyPriorityQueue.py
     @date：2024/11/19 15:34
     @Software: PyCharm
-    @description: 
+    @description: 自定义数据结构-优先队列
 """
 
 
