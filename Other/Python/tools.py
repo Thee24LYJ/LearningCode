@@ -9,6 +9,7 @@
 """
 
 import os
+import re
 import shutil
 from pathlib import Path
 
@@ -55,6 +56,23 @@ def convert_folder(folder_path, file_type="txt", file_encoding='gbk'):
         convert_file(file_path, file_encoding)
 
 
+def remove_markdown_symbols(text):
+    """
+    Markdown文本转纯文本(删除相关符号)
+    :param text: 待转换的Markdown文本
+    :return: 转换成功的文本
+    """
+    # 去除标题符号 #
+    text = re.sub(r'^(#+)\s', '', text, flags=re.M)
+    # 去除无序列表符号 - 和 *
+    text = re.sub(r'^([-*])\s', '', text, flags=re.M)
+    # 去除有序列表符号 1. 2. 3. 等
+    text = re.sub(r'^\d+\.\s', '', text, flags=re.M)
+    # 去除加粗 ** 和斜体 *
+    text = re.sub(r'(\*\*|\*)', '', text)
+    return text
+
+
 if __name__ == "__main__":
     """
     清除pycharm缓存
@@ -73,3 +91,7 @@ if __name__ == "__main__":
     """
     folder_path = r"file_folder"  # 替换为你的文件夹路径
     convert_folder(folder_path,file_type='v')
+
+    markdown_text = input("请输入Markdown文本:")
+    plain_text = remove_markdown_symbols(markdown_text)
+    print(plain_text)
