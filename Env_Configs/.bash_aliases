@@ -1,4 +1,4 @@
-alias l='ls -aClFh'
+alias l='ls -aClFh --color=auto'
 alias v='vim'
 alias cl='clear'
 alias s='source'
@@ -9,6 +9,15 @@ alias va='vim ~/.bash_aliases'
 alias vc='vim ~/.bashrc'
 alias sa='source ~/.bash_aliases'
 alias sc='source ~/.bashrc'
+
+# 定义一个新的cd函数，执行cd命令后显示当前目录的内容
+# bash
+cd()
+{
+	builtin cd "$@" && l
+}
+# csh
+# alias cd 'cd \!*; l;'
 
 # git config
 alias gi='git init'
